@@ -4,7 +4,6 @@ terraform {
         encrypt         = true
         key             = "terraform.tfstate"
         region          = "us-east-1"
-        profile         = "personal"
     }
 
     required_providers {
