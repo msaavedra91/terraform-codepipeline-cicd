@@ -1,17 +1,16 @@
 version: 0.2
 
 phases:
-  pre-build:
+  pre_build:
     commands:
-      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 503604998326.dkr.ecr.us-east-1.amazonaws.com
+      #- cd "$CODEBUILD_SRC_DIR"
+      - terraform init
+      - terraform validate
 
   build:
     commands:
-      - cd "$CODEBUILD_SRC_DIR"
-      - terraform init
-      - terraform validate
       - terraform plan
 
   post_build:
     commands:
-      - echo "Terraform Plan completed on `date`"
+      - echo "Terraform plan completed on `date`"
