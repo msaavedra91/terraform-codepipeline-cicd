@@ -13,6 +13,16 @@ resource "aws_s3_bucket" "tf_codepipeline_bucket" {
   }
 }
 
+resource "aws_s3_bucket" "tf_test_bucket" {
+  bucket = "terraform-test-codepipeline-bucket"
+  acl    = "private"
+
+  tags = {
+    CreatedBy   = "msaavedra91"
+    Environment = "dev"
+  }
+}
+
 resource "aws_dynamodb_table" "dynamodb-terraform-state-lock" {
   name = "terraform-state-lock-dynamo"
   hash_key = "LockID"
